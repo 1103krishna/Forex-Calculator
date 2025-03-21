@@ -12,19 +12,21 @@
       justify-content: center;
       min-height: 100vh;
       padding: 0 10px;
-      background-image: linear-gradient(to right, #00b4db, #0083b0);
+      background-image:linear-gradient(to right,#fce28e,rgb(214, 137, 118));
+       /* linear-gradient(to right,black, #475ec5); */
     
     
     }
     ::selection{
-      color: #fff;
-      background: #000000;
+      color: #923434;
+      background: #ffd2d2;
     }
     .wrapper{
       width: 500px;
       padding: 30px;
       border-radius: 7px;
-      background: #fff;
+      background:linear-gradient(to right,rgb(231, 136, 136), #73f3a8);
+
       box-shadow: 7px 7px 20px rgba(0, 0, 0, 0.05);
     }
     .wrapper header{
@@ -53,7 +55,7 @@
     }
     form input:focus{
       padding: 0 14px;
-      border: 2px solid #0083b0;
+      border: 2px solid #0d1011;
     }
     form .drop-list{
       display: flex;
@@ -68,7 +70,7 @@
       align-items: center;
       border-radius: 5px;
       justify-content: center;
-      border: 1px solid #999;
+      border: 1px solid #080808;
     }
     .select-box img{
       max-width: 21px;
@@ -83,7 +85,7 @@
       width: 8px;
     }
     .select-box select::-webkit-scrollbar-track{
-      background: #fff;
+      background: #000000;
     }
     .select-box select::-webkit-scrollbar-thumb{
       background: #888;
@@ -110,11 +112,11 @@
       color: #fff;
       font-size: 17px;
       cursor: pointer;
-      background: #00b4db;
+      background: linear-gradient(to right,rgb(198, 148, 231), #000000);
       transition: all 0.5s;
     }
     form button:hover{
-      background: #049bce;
+      background: linear-gradient(to right,rgb(156, 21, 21), #c5a847);;
     
     }
     

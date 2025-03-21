@@ -45,23 +45,45 @@ exchangeIcon.addEventListener("click", ()=>{
     getExchangeRate(); 
 })
 
-function getExchangeRate(){
+function getExchangeRate() {
     const amount = document.querySelector("form input");
     const exchangeRateTxt = document.querySelector("form .exchange-rate");
-    let amountVal = amount.value;
-    
-    if(amountVal == "" || amountVal == "0"){
+    let amountVal = parseFloat(amount.value);
+
+    if (isNaN(amountVal) || amountVal <= 0) {
         amount.value = "1";
         amountVal = 1;
     }
+
     exchangeRateTxt.innerText = "Getting exchange rate...";
-    // let url1 = `https://v6.exchangerate-api.com/v6/YOUR_API_KEY/latest/${fromCurrency.value}`;
-    let url= `https://api.exchangerate-api.com/v4/latest/${fromCurrency}`
-    fetch(url).then(response => response.json()).then(result =>{
-        let exchangeRate = result.conversion_rates[toCurrency.value]; 
-        let totalExRate = (amountVal * exchangeRate).toFixed(2); 
-        exchangeRateTxt.innerText = `${amountVal} ${fromCurrency.value} = ${totalExRate} ${toCurrency.value}`;
-    }).catch(() =>{ 
-        exchangeRateTxt.innerText = "Something went wrong";
-    });
+
+    console.log("From Currency:", fromCurrency.value);
+    console.log("To Currency:", toCurrency.value);
+
+    let url = `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_kRdbVuBysdvRciVIjB5gbBp7WDkOEnzQAD9vvVij&base_currency=${fromCurrency.value}&currencies=${toCurrency.value}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result);  
+
+           
+            if (result.data && result.data[toCurrency.value]) {
+                let exchangeRate = result.data[toCurrency.value];
+                let totalExRate = (amountVal * exchangeRate).toFixed(2);
+
+                exchangeRateTxt.innerText = `${amountVal} ${fromCurrency.value} = ${totalExRate} ${toCurrency.value}`;
+            } else {
+                exchangeRateTxt.innerText = "Conversion rate not available";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            exchangeRateTxt.innerText = "Something went wrong";
+        });
 }
+
+
+
+
+  
